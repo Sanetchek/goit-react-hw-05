@@ -1,0 +1,43 @@
+.reviewCard {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.reviewContent {
+  flex: 1;
+}
+
+.authorName {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.rating {
+  font-size: 0.9em;
+  color: #777;
+}
+
+.content {
+  margin-bottom: 10px;
+}
+
+.readMore {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.readMore:hover {
+  text-decoration: underline;
+}
