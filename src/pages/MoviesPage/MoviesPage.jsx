@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { searchMovies } from "../../movies-api";
 import toast from "react-hot-toast";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useLocation } from "react-router-dom";
 
 import css from "./MoviesPage.module.css";
 import MoviesList from "../../components/MoviesList/MoviesList";
@@ -9,39 +9,27 @@ import MoviesLoader from "../../components/MoviesLoader/MoviesLoader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 export default function MoviesPage({ genres }) {
-  const [movieName, setMovieName] = useState("");
-  const [moviesList, setMoviesList] = useState([]); // Ensured initialization to empty array
+  const [moviesList, setMoviesList] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const movieFilter = searchParams.get("movie") ?? "";
+  const [movieName, setMovieName] = useState(movieFilter);
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    const value = event.target.search.value.trim().toLowerCase();
-    if (value) {
-      setMovieName(value);
-      const newSearchParams = new URLSearchParams(searchParams);
-      newSearchParams.set("movie", value);
-      setSearchParams(newSearchParams);
-    } else {
-      toast.error("Please enter a movie name.");
-    }
-  };
-
-  const filteredMovies = useMemo(() => {
-    return (moviesList || []).filter((movie) =>
-      movie.title.toLowerCase().includes(movieFilter.toLowerCase())
-    );
-  }, [movieFilter, moviesList]);
-
+  // Update movieName state when the searchParams change
   useEffect(() => {
-    if (!movieName) {
-      return;
+    if (movieFilter !== movieName) {
+      setMovieName(movieFilter);
     }
+  }, [movieFilter]);
 
+  // Fetch movies when movieName changes
+  useEffect(() => {
     async function getSearchedMovies() {
+      if (!movieName) return;
+
       try {
         setMoviesList([]);
         setTotalResults(0);
@@ -60,8 +48,22 @@ export default function MoviesPage({ genres }) {
         setLoader(false);
       }
     }
+
     getSearchedMovies();
   }, [movieName]);
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const value = event.target.search.value.trim().toLowerCase();
+    if (value) {
+      setMovieName(value);
+      searchParams.set("movie", value);
+      setSearchParams(searchParams);
+      setHasSearched(true); // Set hasSearched to true when a search is submitted
+    } else {
+      toast.error("Please enter a movie name.");
+    }
+  };
 
   return (
     <>
@@ -81,22 +83,12 @@ export default function MoviesPage({ genres }) {
 
       {error ? (
         <ErrorMessage />
+      ) : hasSearched && totalResults === 0 ? (
+        <p>No results found</p>
       ) : (
-        totalResults > 0 ? (
-          <MoviesList movies={filteredMovies} genres={genres} />
-        ) : (
-          <p>No results found</p>
-        )
+        <MoviesList movies={moviesList} genres={genres} />
       )}
-
     </>
   );
 }
-
-
-
-
-
-
-
 

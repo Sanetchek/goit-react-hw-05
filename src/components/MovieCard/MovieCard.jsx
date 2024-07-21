@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import css from "./MovieCard.module.css";
 
 // Helper function to get genre names
@@ -12,6 +12,7 @@ const getGenres = (genreIds, genres) => {
 };
 
 export default function MovieCard({ movie, genres }) {
+  const location = useLocation();
   return (
     <div className={css.movieCard}>
       <img
@@ -27,9 +28,12 @@ export default function MovieCard({ movie, genres }) {
           Genre: {getGenres(movie.genre_ids, genres)}
         </p>
 
-        <Link to={`/movies/${movie.id}`}>Read More</Link>
+        <Link to={`/movies/${movie.id}`} state={location}>
+          Read More
+        </Link>
       </div>
     </div>
   );
 }
+
 

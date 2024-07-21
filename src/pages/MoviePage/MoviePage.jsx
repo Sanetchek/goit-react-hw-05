@@ -27,6 +27,8 @@ export default function MoviePage() {
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
 
+  console.log(location);
+
   useEffect(() => {
     async function getMovieDetails() {
       try {
