@@ -1,0 +1,37 @@
+.movieCard {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  gap: 40px;
+  padding: 10px;
+  background: #fff;
+}
+
+.moviePoster {
+  width: 300px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.movieDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.movieTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.movieOverview {
+  font-size: 14px;
+  color: #666;
+}
+
+.movieRating,
+.movieGenre {
+  font-size: 16px;
+  color: #333;
+  margin-top: 5px;
+}

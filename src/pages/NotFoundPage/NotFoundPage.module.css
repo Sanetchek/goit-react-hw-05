@@ -1,0 +1,35 @@
+/* NotFound.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  background-color: #f4f4f4;
+  text-align: center;
+  color: #333;
+}
+
+.errorCode {
+  font-size: 96px;
+  font-weight: bold;
+  margin: 0;
+  color: #ff6347;
+}
+
+.message {
+  font-size: 24px;
+  margin: 20px 0;
+}
+
+.homeLink {
+  font-size: 18px;
+  color: #3498db;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: color 0.3s ease;
+}
+
+.homeLink:hover {
+  color: #ff6347;
+}
