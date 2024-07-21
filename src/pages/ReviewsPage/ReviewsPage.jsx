@@ -13,7 +13,6 @@ export default function ReviewsPage() {
       try {
         const data = await movieReviews(movieId);
         setReview(data.review);
-        console.log(data.review);
       } catch (error) {
         toast.error(error.message);
       }
@@ -25,8 +24,9 @@ export default function ReviewsPage() {
     return <p>No review information available.</p>;
   }
 
-  return <>Reviews Page</>;
+  return <p>{!review ? 'No review information available.' : review}</p>;
 }
+
 
 
 

@@ -10,9 +10,9 @@ export const trendingMovies = async () => {
   return response.data;
 };
 
-export const searchMovies = async (name) => {
+export const searchMovies = async (query) => {
   const response = await axios.get('/search/movie', {
-    query: name,
+    query,
     include_adult: false,
     language: 'en-US'
   });
