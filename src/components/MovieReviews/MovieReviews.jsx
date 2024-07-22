@@ -1,6 +1,6 @@
-import css from './ReviewCard.module.css';
+import css from "./MovieReviews.module.css";
 
-export default function ReviewCard({ review }) {
+export default function MovieReviews({ review }) {
   return (
     <div className={css.reviewCard}>
       {review.author_details.avatar_path && (
@@ -18,4 +18,6 @@ export default function ReviewCard({ review }) {
     </div>
   );
 };
+
+
 

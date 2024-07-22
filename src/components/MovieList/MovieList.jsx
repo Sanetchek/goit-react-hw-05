@@ -1,7 +1,7 @@
-import css from "./MoviesList.module.css";
+import css from "./MovieList.module.css";
 import MovieCard from "../MovieCard/MovieCard";
 
-export default function MoviesList({ movies, genres }) {
+export default function MovieList({ movies, genres }) {
   return (
     <ul className={css.movieList}>
       {movies.map((movie) => (

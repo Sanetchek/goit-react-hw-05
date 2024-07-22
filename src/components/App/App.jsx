@@ -9,7 +9,9 @@ import Loader from "../Loader/Loader";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const MoviesPage = lazy(() => import("../../pages/MoviesPage/MoviesPage"));
-const MoviePage = lazy(() => import("../../pages/MoviePage/MoviePage"));
+const MovieDetailsPage = lazy(() =>
+  import("../../pages/MovieDetailsPage/MovieDetailsPage")
+);
 const CastPage = lazy(() => import("../../pages/CastPage/CastPage"));
 const ReviewsPage = lazy(() => import("../../pages/ReviewsPage/ReviewsPage"));
 const NotFoundPage = lazy(() =>
@@ -44,7 +46,7 @@ function App() {
                 path="/movies"
                 element={<MoviesPage genres={genreList} />}
               />
-              <Route path="/movies/:movieId" element={<MoviePage />}>
+              <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
                 <Route path="cast" element={<CastPage />} />
                 <Route path="reviews" element={<ReviewsPage />} />
               </Route>
@@ -60,6 +62,10 @@ function App() {
 }
 
 export default App;
+
+
+
+
 
 
 

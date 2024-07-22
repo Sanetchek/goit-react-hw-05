@@ -1,0 +1,28 @@
+.castImage {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.castDetails {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.castDetails h3 {
+  font-size: 1em;
+  margin: 0;
+}
+
+.castDetails p {
+  margin: 5px 0 0;
+  font-size: 0.9em;
+  color: #555;
+}

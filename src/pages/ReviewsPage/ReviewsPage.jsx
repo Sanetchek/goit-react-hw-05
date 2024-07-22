@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import css from "./ReviewsPage.module.css";
 import MoviesLoader from "../../components/MoviesLoader/MoviesLoader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import ReviewCard from "../../components/ReviewCard/ReviewCard";
+import MovieReviews from "../../components/MovieReviews/MovieReviews";
 
 export default function ReviewsPage() {
   const { movieId } = useParams();
@@ -35,21 +35,17 @@ export default function ReviewsPage() {
   return (
     <div className={css.reviewsContainer}>
       {loader && <MoviesLoader />}
-
-      {error ? (
-        <ErrorMessage />
-      ) : reviews.length === 0 ? (
+      {error && <ErrorMessage />}
+      {!error && !loader && reviews.length === 0 && (
         <p>No review information available.</p>
-      ) : (
+      )}
+      {!error && !loader && reviews.length > 0 && (
         <div className={css.reviewsList}>
           {reviews.map((review) => (
-            <ReviewCard key={review.id} review={review} />
+            <MovieReviews key={review.id} review={review} />
           ))}
         </div>
       )}
     </div>
   );
 }
-
-
-

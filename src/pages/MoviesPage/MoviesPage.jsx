@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useSearchParams, useLocation } from "react-router-dom";
 
 import css from "./MoviesPage.module.css";
-import MoviesList from "../../components/MoviesList/MoviesList";
+import MovieList from "../../components/MovieList/MovieList";
 import MoviesLoader from "../../components/MoviesLoader/MoviesLoader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
@@ -86,7 +86,7 @@ export default function MoviesPage({ genres }) {
       ) : hasSearched && totalResults === 0 ? (
         <p>No results found</p>
       ) : (
-        <MoviesList movies={moviesList} genres={genres} />
+        <MovieList movies={moviesList} genres={genres} />
       )}
     </>
   );

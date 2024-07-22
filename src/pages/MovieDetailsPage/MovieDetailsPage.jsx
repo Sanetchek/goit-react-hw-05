@@ -10,24 +10,22 @@ import { movieDetails } from "../../movies-api.js";
 import toast from "react-hot-toast";
 import MovieDetails from "../../components/MovieDetails/MovieDetails.jsx";
 import MoviesLoader from "../../components/MoviesLoader/MoviesLoader.jsx";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.jsx";
 
-import css from './MoviePage.module.css';
+import css from "./MovieDetailsPage.module.css";
 import clsx from "clsx";
 
 export const makeNavLinkClass = ({ isActive }) => {
   return clsx(css.tab, isActive && css.activeTab);
 };
 
-export default function MoviePage() {
+export default function MovieDetailsPage() {
   const location = useLocation();
   const backLinkRef = useRef(location.state ?? "/");
   const { movieId } = useParams();
   const [info, setInfo] = useState(null);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
-
-  console.log(location);
 
   useEffect(() => {
     async function getMovieDetails() {
@@ -71,3 +69,5 @@ export default function MoviePage() {
     </>
   );
 }
+
+

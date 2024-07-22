@@ -3,7 +3,7 @@ import { trendingMovies } from "../../movies-api";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
-import MoviesList from "../../components/MoviesList/MoviesList";
+import MovieList from "../../components/MovieList/MovieList";
 import MoviesLoader from "../../components/MoviesLoader/MoviesLoader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import css from "./HomePage.module.css";
@@ -45,11 +45,8 @@ export default function HomePage({ genres }) {
       {error ? (
         <ErrorMessage />
       ) : (
-        movieList.length > 0 && (
-          <MoviesList movies={movieList} genres={genres} />
-        )
+        movieList.length > 0 && <MovieList movies={movieList} genres={genres} />
       )}
-
     </>
   );
 }
