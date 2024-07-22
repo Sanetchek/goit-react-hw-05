@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { searchMovies } from "../../movies-api";
 import toast from "react-hot-toast";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import css from "./MoviesPage.module.css";
 import MovieList from "../../components/MovieList/MovieList";
@@ -16,19 +16,11 @@ export default function MoviesPage({ genres }) {
   const [hasSearched, setHasSearched] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const movieFilter = searchParams.get("movie") ?? "";
-  const [movieName, setMovieName] = useState(movieFilter);
 
-  // Update movieName state when the searchParams change
-  useEffect(() => {
-    if (movieFilter !== movieName) {
-      setMovieName(movieFilter);
-    }
-  }, [movieFilter]);
-
-  // Fetch movies when movieName changes
+  // Fetch movies when movieFilter changes
   useEffect(() => {
     async function getSearchedMovies() {
-      if (!movieName) return;
+      if (!movieFilter) return;
 
       try {
         setMoviesList([]);
@@ -36,7 +28,7 @@ export default function MoviesPage({ genres }) {
         setLoader(true);
         setError(false);
 
-        const data = await searchMovies(movieName);
+        const data = await searchMovies(movieFilter);
         setMoviesList(Array.isArray(data.results) ? data.results : []);
         setTotalResults(data.total_results || 0);
       } catch (error) {
@@ -50,13 +42,12 @@ export default function MoviesPage({ genres }) {
     }
 
     getSearchedMovies();
-  }, [movieName]);
+  }, [movieFilter]);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const value = event.target.search.value.trim().toLowerCase();
     if (value) {
-      setMovieName(value);
       searchParams.set("movie", value);
       setSearchParams(searchParams);
       setHasSearched(true); // Set hasSearched to true when a search is submitted
