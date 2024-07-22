@@ -83,7 +83,7 @@ export default function MoviesPage({ genres }) {
 
       {error ? (
         <ErrorMessage />
-      ) : hasSearched && totalResults === 0 ? (
+      ) : hasSearched && !loader && totalResults === 0 ? (
         <p>No results found</p>
       ) : (
         <MovieList movies={moviesList} genres={genres} />
@@ -91,4 +91,3 @@ export default function MoviesPage({ genres }) {
     </>
   );
 }
-

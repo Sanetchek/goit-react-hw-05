@@ -37,17 +37,15 @@ export default function CastPage() {
 
       {error ? (
         <ErrorMessage />
+      ) : !loader && cast.length === 0 ? (
+        <p>No cast information available.</p>
       ) : (
         <ul className={css.castList}>
-          {!loader && cast.length === 0 ? (
-            <p>No cast information available.</p>
-          ) : (
-            cast.map((item) => (
-              <li key={item.id} className={css.castItem}>
-                <MovieCast item={item} />
-              </li>
-            ))
-          )}
+          {cast.map((item) => (
+            <li key={item.id} className={css.castItem}>
+              <MovieCast item={item} />
+            </li>
+          ))}
         </ul>
       )}
     </>
